@@ -6,13 +6,10 @@ import java.awt.Toolkit;
 public interface ISpecifics {
 	
 	// Window Information
-	final static int CORRECTION_WIDTH = 16;
-	final static int CORRECTION_HEIGHT = 39;
-	final static int FRAME_WIDTH = 1000 + CORRECTION_WIDTH;
-	final static int FRAME_HEIGHT = 600 + CORRECTION_HEIGHT;
-	final static int PANEL_WIDTH = 1000; // These dimensions do not need to be here
-	final static int PANEL_HEIGHT = 600;
-	
+	final static int FRAME_WIDTH = 1000 + 16;
+	final static int FRAME_HEIGHT = 600 + 39;
+	final static int PANEL_WIDTH = 1000 + 10;
+	final static int PANEL_HEIGHT = 600 + 10;
 	final static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	// Genetic Algorithm Variables

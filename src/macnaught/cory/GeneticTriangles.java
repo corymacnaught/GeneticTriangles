@@ -1,17 +1,11 @@
 package macnaught.cory;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import macnaught.cory.shapes.Goal;
 import macnaught.cory.shapes.Triangle;
@@ -23,8 +17,6 @@ public class GeneticTriangles implements ISpecifics{
 	private Thread thread;
 	
 	private static JFrame frame;
-	private static JPanel contentPane;
-	private static OptionsPane optionsPane;
 	private static Display display;
 	
 	// Game engine variables
@@ -82,12 +74,6 @@ public class GeneticTriangles implements ISpecifics{
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-            	//resize content pane
-            	//contentPane.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-            	
-            	//resize selection pane
-            	//selectionPane.setPreferredSize(new Dimension(contentPane.getWidth(), 200));
-            	
             	//resize display
             	//display.setBounds(0, 0, frame.getWidth(), frame.getHeight());
             	
@@ -162,9 +148,8 @@ public class GeneticTriangles implements ISpecifics{
 	
 	public static void main(String[] args) {
 		generations = new Generations();
-		
 		goal = new Goal();
-		goal.setBounds(200, 200, 25, 25);
+		goal.setBounds(900, 500, 25, 25);
 		
 		// Genetic Algorithm Code
 		EventQueue.invokeLater(() ->
@@ -178,24 +163,14 @@ public class GeneticTriangles implements ISpecifics{
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
 	
-			//Panel in which holds all the content
-			contentPane = new JPanel();
-			contentPane.setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
-			contentPane.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-			
-			//Panel at the top that holds the control
-			optionsPane = new OptionsPane();
-			optionsPane.setBounds(0, 0, contentPane.getWidth(), 100);
-			optionsPane.setPreferredSize(new Dimension(optionsPane.getWidth(), optionsPane.getHeight()));
-			optionsPane.setBackground(Color.WHITE);
 			
 			// Display Simulation
 			display = new Display(generations.getCurrentPopulation(), goal, obstacleList);
-			display.setBounds(0, 0, contentPane.getWidth(), contentPane.getHeight() - optionsPane.getHeight());
-			display.setPreferredSize(new Dimension(display.getWidth(), display.getHeight()));
+			display.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 			display.setBackground(Color.BLACK);
 			display.setFocusable(true);
 		    display.requestFocus();
+			//display.displayVectors = true; No Longer Used
 			display.addDisplayEventListener(new DisplayEventListener()
 			{
 				@Override
@@ -207,28 +182,23 @@ public class GeneticTriangles implements ISpecifics{
 			
 			// Add boundaries
 			wall[0] = new Wall();
-			wall[0].setBounds(0, 0, display.getWidth(), 1);
+			wall[0].setBounds(0, 0, frame.getWidth(), 1);
 			addObstacle(wall[0]); // Top boundary
 			
 			wall[1] = new Wall();
-			wall[1].setBounds(display.getWidth() - BOUNDARY_CORRECTION_X, 0, 1, display.getHeight());
+			wall[1].setBounds(frame.getWidth() - BOUNDARY_CORRECTION_X, 0, 1, frame.getHeight());
 			addObstacle(wall[1]); // Right boundary
 			
 			wall[2] = new Wall();
-			wall[2].setBounds(0, 0, 1, display.getHeight());
+			wall[2].setBounds(0, 0, 1, frame.getHeight());
 			addObstacle(wall[2]); // Left boundary
 			
 			wall[3] = new Wall();
-			wall[3].setBounds(0, display.getHeight() - BOUNDARY_CORRECTION_Y, display.getWidth(), 1);
+			wall[3].setBounds(0, frame.getHeight() - BOUNDARY_CORRECTION_Y, frame.getWidth(), 1);
 			addObstacle(wall[3]); // Bottom boundary
 			
 			addComponentListener(frame);
-			
-			contentPane.add(optionsPane);
-			contentPane.add(display);
-			
-			
-			frame.add(contentPane);
+			frame.add(display);
 			
 			// Create Simulation
 			new GeneticTriangles();
