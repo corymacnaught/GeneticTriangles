@@ -24,7 +24,9 @@ public class GeneticTriangles implements ISpecifics{
 	
 	private static JFrame frame;
 	private static JPanel contentPane;
-	private static OptionsPane optionsPane;
+	private static JPanel optionsPane;
+	private static LargeNumberSelectorComponent triangleSelector;
+	private static LargeNumberSelectorComponent generationSelector;
 	private static Display display;
 	
 	// Game engine variables
@@ -184,10 +186,21 @@ public class GeneticTriangles implements ISpecifics{
 			contentPane.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 			
 			//Panel at the top that holds the control
-			optionsPane = new OptionsPane();
+			optionsPane = new JPanel();
 			optionsPane.setBounds(0, 0, contentPane.getWidth(), 100);
 			optionsPane.setPreferredSize(new Dimension(optionsPane.getWidth(), optionsPane.getHeight()));
+			optionsPane.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 			optionsPane.setBackground(Color.WHITE);
+			
+			//Controls to add to optionsPane
+			triangleSelector = new LargeNumberSelectorComponent("Triangle", 0);
+			generationSelector = new LargeNumberSelectorComponent("Generation", 0);
+			
+			triangleSelector.setPreferredSize(new Dimension(100, optionsPane.getHeight()));
+			generationSelector.setPreferredSize(new Dimension(100, optionsPane.getHeight()));
+			
+			optionsPane.add(triangleSelector);
+			optionsPane.add(generationSelector);
 			
 			// Display Simulation
 			display = new Display(generations.getCurrentPopulation(), goal, obstacleList);

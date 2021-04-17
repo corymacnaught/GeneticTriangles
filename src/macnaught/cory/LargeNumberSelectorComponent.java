@@ -1,5 +1,6 @@
 package macnaught.cory;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -58,13 +59,15 @@ public class LargeNumberSelectorComponent  extends JPanel implements ISpecifics{
 		c.gridy = 0;
 		this.add(label, c);
 		
+		c.gridx = 0;
 		c.gridy = 1;
 		this.add(buttonUp, c);
 		
+		c.gridx = 0;
 		c.gridy = 2;
-		c.ipady = 10;
 		this.add(txt, c);
 		
+		c.gridx = 0;
 		c.gridy = 3;
 		this.add(buttonDown, c);
 	}
