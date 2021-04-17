@@ -14,9 +14,9 @@ public class OptionsPane extends JPanel implements ISpecifics{
 	private LargeNumberSelectorComponent triangleSelector;
 	
 	public OptionsPane() {
-		//this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+		this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
-		//this.triangleSelector = new LargeNumberSelectorComponent("Triangle", 0);
-		//this.add(triangleSelector);
+		this.triangleSelector = new LargeNumberSelectorComponent("Triangle", 0);
+		this.add(triangleSelector);
 	}
 }
