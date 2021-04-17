@@ -16,7 +16,7 @@ import macnaught.cory.shapes.Obstacle;
 import macnaught.cory.shapes.Wall;
 import macnaught.cory.shapes.Checkpoint;
 
-public class Display extends JPanel implements ISpecifics, MouseListener, MouseMotionListener, KeyListener{
+public class Display extends JPanel implements ISpecifics, MouseListener, MouseMotionListener{
 
 	/**
 	 * 
@@ -37,7 +37,6 @@ public class Display extends JPanel implements ISpecifics, MouseListener, MouseM
 	public Display(Population population, Goal goal, ArrayList<Obstacle> obstacleList) {
 		addMouseListener(this);
 		addMouseMotionListener(this);
-		addKeyListener(this);
 		
 		this.population = population;
 		this.goal = goal;	
@@ -88,14 +87,6 @@ public class Display extends JPanel implements ISpecifics, MouseListener, MouseM
 	// Set Population for next generation
 	public void setPopulation(Population population) {
 		this.population = population;
-	}
-	
-	private void incrementDisplayedTriangle() {
-		if (this.displayedTriangle < this.population.size()) this.displayedTriangle++;
-	}
-	
-	private void decrementDisplayedTriangle() {
-		if (this.displayedTriangle > 0) this.displayedTriangle--;
 	}
 		
 	//Event Listeners
@@ -178,24 +169,6 @@ public class Display extends JPanel implements ISpecifics, MouseListener, MouseM
 		// TODO Auto-generated method stub
 		
 		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getKeyCode() == e.VK_RIGHT) incrementDisplayedTriangle();
-		if (e.getKeyCode() == e.VK_LEFT) decrementDisplayedTriangle();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 	
 }

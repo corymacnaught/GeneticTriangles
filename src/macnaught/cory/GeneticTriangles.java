@@ -194,8 +194,6 @@ public class GeneticTriangles implements ISpecifics{
 			display.setBounds(0, 0, contentPane.getWidth(), contentPane.getHeight() - optionsPane.getHeight());
 			display.setPreferredSize(new Dimension(display.getWidth(), display.getHeight()));
 			display.setBackground(Color.BLACK);
-			display.setFocusable(true);
-		    display.requestFocus();
 			display.addDisplayEventListener(new DisplayEventListener()
 			{
 				@Override
