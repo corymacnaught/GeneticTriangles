@@ -1,6 +1,5 @@
-package macnaught.cory;
+package macnaught.com.components;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -12,8 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import macnaught.cory.ISpecifics;
+
 public class LargeNumberSelectorComponent  extends JPanel implements ISpecifics{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton buttonUp = new JButton("+");
 	private JLabel label = new JLabel();
 	private JTextField txt = new JTextField("0");
@@ -54,7 +59,7 @@ public class LargeNumberSelectorComponent  extends JPanel implements ISpecifics{
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		c.fill = GridBagConstraints.HORIZONTAL;
+		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 0;
 		c.gridy = 0;
 		this.add(label, c);
