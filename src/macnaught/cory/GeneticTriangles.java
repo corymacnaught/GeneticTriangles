@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import macnaught.com.components.LargeNumberSelectorComponent;
+import macnaught.com.components.NumberDisplayComponent;
 import macnaught.cory.shapes.Goal;
 import macnaught.cory.shapes.Triangle;
 import macnaught.cory.shapes.Wall;
@@ -27,7 +28,7 @@ public class GeneticTriangles implements ISpecifics{
 	private static JPanel contentPane;
 	private static JPanel optionsPane;
 	private static LargeNumberSelectorComponent triangleSelector;
-	private static LargeNumberSelectorComponent generationSelector;
+	private static NumberDisplayComponent generationDisplay;
 	private static Display display;
 	
 	// Game engine variables
@@ -195,13 +196,13 @@ public class GeneticTriangles implements ISpecifics{
 			
 			//Controls to add to optionsPane
 			triangleSelector = new LargeNumberSelectorComponent("Triangle", 0);
-			generationSelector = new LargeNumberSelectorComponent("Generation", 0);
+			generationDisplay = new NumberDisplayComponent("Generation", 0);
 			
 			triangleSelector.setPreferredSize(new Dimension(100, optionsPane.getHeight()));
-			generationSelector.setPreferredSize(new Dimension(100, optionsPane.getHeight()));
+			generationDisplay.setPreferredSize(new Dimension(100, optionsPane.getHeight()));
 			
 			optionsPane.add(triangleSelector);
-			optionsPane.add(generationSelector);
+			optionsPane.add(generationDisplay);
 			
 			// Display Simulation
 			display = new Display(generations.getCurrentPopulation(), goal, obstacleList);

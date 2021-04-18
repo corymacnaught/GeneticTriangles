@@ -11,9 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import macnaught.cory.ISpecifics;
-
-public class LargeNumberSelectorComponent  extends JPanel implements ISpecifics{
+public class LargeNumberSelectorComponent extends JPanel{
 	
 	/**
 	 * 
