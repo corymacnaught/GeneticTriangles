@@ -196,6 +196,15 @@ public class GeneticTriangles implements ISpecifics{
 			
 			//Controls to add to optionsPane
 			triangleSelector = new LargeNumberSelectorComponent("Triangle", 0);
+			triangleSelector.addLargeNumberSelectorComponentEventListener(new LargeNumberSelectorComponentEventListener()
+			{
+				@Override
+				public void largeNumberSelectorComponentEventOccurred(LargeNumberSelectorComponentEvent evt)
+				{
+					display.setDisplayedTriangle(evt.getValue());
+				}
+			});
+			
 			generationDisplay = new NumberDisplayComponent("Generation", 0);
 			
 			triangleSelector.setPreferredSize(new Dimension(100, optionsPane.getHeight()));

@@ -89,6 +89,12 @@ public class Display extends JPanel implements ISpecifics, MouseListener, MouseM
 	public void setPopulation(Population population) {
 		this.population = population;
 	}
+	
+	public void setDisplayedTriangle(int value) {
+		if (value >= 0 && value <= this.population.size()) {
+			this.displayedTriangle = value;
+		}
+	}
 		
 	//Event Listeners
 	protected EventListenerList listenerList = new EventListenerList();

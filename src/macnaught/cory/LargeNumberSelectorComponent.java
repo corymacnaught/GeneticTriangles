@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.EventListenerList;
 
 public class LargeNumberSelectorComponent extends JPanel{
 	
@@ -37,8 +38,11 @@ public class LargeNumberSelectorComponent extends JPanel{
 	            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
 	            	String typed = txt.getText();
 	            	
-	            	if(typed.matches("[0-9]+")) setValue(Integer.parseInt(typed));
-	                else setValue(0);
+	            	if(typed.matches("[0-9]+")) {
+	            		setValue(Integer.parseInt(typed));
+	            	} else {
+	            		setValue(0);
+	            	}
 	            }
 	        }
     	});
@@ -75,6 +79,31 @@ public class LargeNumberSelectorComponent extends JPanel{
 		this.add(buttonDown, c);
 	}
 	
+	//Event Listeners
+	protected EventListenerList listenerList = new EventListenerList();
+	
+	public void addLargeNumberSelectorComponentEventListener(LargeNumberSelectorComponentEventListener listener)
+	{
+		listenerList.add(LargeNumberSelectorComponentEventListener.class, listener);
+	}
+	
+	public void removeLargeNumberSelectorComponentEventListener(LargeNumberSelectorComponentEventListener listener)
+	{
+		listenerList.remove(LargeNumberSelectorComponentEventListener.class, listener);
+	}
+
+	public void fireLargeNumberSelectorComponentEvent(LargeNumberSelectorComponentEvent evt)
+	{
+		Object[] listeners = listenerList.getListenerList();
+		for (int i = 0; i < listeners.length; i = i + 2)
+		{
+			if (listeners[i] == LargeNumberSelectorComponentEventListener.class)
+			{
+				((LargeNumberSelectorComponentEventListener)listeners[i + 1]).largeNumberSelectorComponentEventOccurred(evt);
+			}
+		}
+	}
+	
 	// Functions
 	private void incrementValue() {
 		if (this.getValue() + 1 <= Integer.MAX_VALUE) {
@@ -92,6 +121,7 @@ public class LargeNumberSelectorComponent extends JPanel{
 	private void setValue(int value) {
 		if (value >= 0) {
 			this.value = value;
+			fireLargeNumberSelectorComponentEvent(new LargeNumberSelectorComponentEvent(this.getValue()));
 		}
 		
 		txt.setText(Integer.toString(this.getValue()));
