@@ -144,12 +144,6 @@ public class LargeNumberSelectorComponent extends JPanel implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
         	this.buttonUp.doClick();
         }
@@ -157,5 +151,11 @@ public class LargeNumberSelectorComponent extends JPanel implements KeyListener{
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
         	this.buttonDown.doClick();
         }
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
