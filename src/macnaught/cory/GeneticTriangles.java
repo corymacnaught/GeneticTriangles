@@ -13,8 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import macnaught.com.components.LargeNumberSelectorComponent;
-import macnaught.com.components.NumberDisplayComponent;
+import macnaught.cory.interfaces.ISpecifics;
 import macnaught.cory.shapes.Goal;
 import macnaught.cory.shapes.Triangle;
 import macnaught.cory.shapes.Wall;

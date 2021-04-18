@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
-import macnaught.cory.ISpecifics;
+import macnaught.cory.interfaces.ISpecifics;
 
 public class Triangle extends Shape{
 

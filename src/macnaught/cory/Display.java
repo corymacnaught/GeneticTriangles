@@ -14,6 +14,7 @@ import javax.swing.event.EventListenerList;
 import macnaught.cory.shapes.Goal;
 import macnaught.cory.shapes.Obstacle;
 import macnaught.cory.shapes.Wall;
+import macnaught.cory.interfaces.ISpecifics;
 import macnaught.cory.shapes.Checkpoint;
 
 public class Display extends JPanel implements ISpecifics, MouseListener, MouseMotionListener{

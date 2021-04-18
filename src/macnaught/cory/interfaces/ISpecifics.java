@@ -1,4 +1,4 @@
-package macnaught.cory;
+package macnaught.cory.interfaces;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
