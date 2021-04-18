@@ -11,7 +11,7 @@ public class Generations {
 	private static int POPULATION_SIZE;
 	
 	public Generations() {
-		this.setPopulationSize(250);
+		this.setPopulationSize(300);
 		this.add(new Population(POPULATION_SIZE));
 		
 		this.setGenerationIndex(0);

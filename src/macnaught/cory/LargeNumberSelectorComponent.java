@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.EventListenerList;
 
-public class LargeNumberSelectorComponent extends JPanel{
+public class LargeNumberSelectorComponent extends JPanel implements KeyListener{
 	
 	/**
 	 * 
@@ -27,6 +28,7 @@ public class LargeNumberSelectorComponent extends JPanel{
 	
 	// Constructors
 	public LargeNumberSelectorComponent(String labelName, int value) {
+		this.addKeyListener(this);
 		
 		this.setValue(value);
 		label.setText(labelName);
@@ -38,23 +40,22 @@ public class LargeNumberSelectorComponent extends JPanel{
 	            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
 	            	String typed = txt.getText();
 	            	
-	            	if(typed.matches("[0-9]+")) {
-	            		setValue(Integer.parseInt(typed));
-	            	} else {
-	            		setValue(0);
-	            	}
+	            	if(typed.matches("[0-9]+")) setValue(Integer.parseInt(typed));
+	            	else setValue(0);
 	            }
 	        }
     	});
 		
 		this.buttonUp.addActionListener((ActionEvent event) ->
 		{
-			incrementValue();
+			this.incrementValue();
+			this.requestFocus();
 		});
 		
 		this.buttonDown.addActionListener((ActionEvent event) ->
 		{
-			decrementValue();
+			this.decrementValue();
+			this.requestFocus();
 		});
 		
 		// Layout of items
@@ -77,6 +78,36 @@ public class LargeNumberSelectorComponent extends JPanel{
 		c.gridx = 0;
 		c.gridy = 3;
 		this.add(buttonDown, c);
+	}
+	
+	// Functions
+	private void incrementValue() {
+		if (this.getValue() + 1 <= Integer.MAX_VALUE) {
+			this.setValue(this.getValue() + 1);
+		}
+	}
+	
+	private void decrementValue() {
+		if (this.getValue() - 1 >= Integer.MIN_VALUE) {
+			this.setValue(this.getValue() - 1);
+		}
+	}
+	
+	// Setters/Getters
+	private void setValue(int value) {
+		if (value >= 0) {
+			this.value = value;
+			fireLargeNumberSelectorComponentEvent(new LargeNumberSelectorComponentEvent(this.getValue()));
+		}
+		else {
+			this.value = 0;
+		}
+		
+		txt.setText(Integer.toString(this.getValue()));
+	}
+	
+	public int getValue() {
+		return value;
 	}
 	
 	//Event Listeners
@@ -103,31 +134,28 @@ public class LargeNumberSelectorComponent extends JPanel{
 			}
 		}
 	}
-	
-	// Functions
-	private void incrementValue() {
-		if (this.getValue() + 1 <= Integer.MAX_VALUE) {
-			this.setValue(this.getValue() + 1);
-		}
-	}
-	
-	private void decrementValue() {
-		if (this.getValue() - 1 >= Integer.MIN_VALUE) {
-			this.setValue(this.getValue() - 1);
-		}
-	}
-	
-	// Setters/Getters
-	private void setValue(int value) {
-		if (value >= 0) {
-			this.value = value;
-			fireLargeNumberSelectorComponentEvent(new LargeNumberSelectorComponentEvent(this.getValue()));
-		}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
-		txt.setText(Integer.toString(this.getValue()));
 	}
-	
-	public int getValue() {
-		return value;
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+        	this.buttonUp.doClick();
+        }
+		
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        	this.buttonDown.doClick();
+        }
 	}
 }
