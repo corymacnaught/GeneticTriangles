@@ -72,16 +72,16 @@ public class Generations {
 		}
 	}
 
-	public void setGenerationIndex(int value) {
+	private void setGenerationIndex(int value) {
 		if (value >= 0)
 			this.generationIndex = value;
 	}
 	
-	public void incrementGenerationIndex() {
+	private void incrementGenerationIndex() {
 		this.setGenerationIndex(this.generationIndex + 1);
 	}
 	
-	public void decrementGenerationIndex() {
+	private void decrementGenerationIndex() {
 		this.setGenerationIndex(this.generationIndex - 1);
 	}
 	
