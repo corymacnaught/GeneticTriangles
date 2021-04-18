@@ -142,6 +142,7 @@ public class GeneticTriangles implements ISpecifics{
 				generations.getCurrentPopulation().resetPositions();
 			}
 	    	display.setPopulation(generations.getCurrentPopulation());
+	    	generationDisplay.setValue(generations.getGenerationIndex());
 	    	System.out.println(generations.toString());
 		}
 		
